@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>نوژا | ایجاد پکیج محصولات</title>
+
+    <!-- External CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-primary: #2b3441;
+        --bg-secondary: #1c232d;
+        --accent-primary: #e5ddd0;
+        --accent-secondary: #c4c4c4;
+        --text-primary: #e5ddd0;
+        --text-secondary: #c4c4c4;
+      }
+
+      body {
+        font-family: 'Vazirmatn', sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+      }
+
+      .header {
+        background: var(--bg-secondary);
+        padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .admin-card {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(229, 221, 208, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .package-item {
+        background: rgba(229, 221, 208, 0.05);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border: 1px solid rgba(229, 221, 208, 0.1);
+      }
+
+      .product-search {
+        position: relative;
+      }
+
+      .search-results {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-secondary);
+        border: 1px solid rgba(229, 221, 208, 0.2);
+        border-radius: 8px;
+        margin-top: 4px;
+        max-height: 300px;
+        overflow-y: auto;
+        z-index: 1000;
+      }
+
+      .search-item {
+        padding: 0.75rem;
+        border-bottom: 1px solid rgba(229, 221, 208, 0.1);
+        cursor: pointer;
+      }
+
+      .search-item:hover {
+        background: rgba(229, 221, 208, 0.05);
+      }
+
+      .action-btn {
+        background: transparent;
+        border: 1px solid var(--accent-primary);
+        color: var(--text-primary);
+        border-radius: 8px;
+        padding: 8px 16px;
+        transition: all 0.2s;
+      }
+
+      .action-btn:hover {
+        background: var(--accent-primary);
+        color: var(--bg-primary);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="header mb-4">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center gap-3">
+            <button
+              class="btn text-light"
+              onclick="window.location.href='products.html'"
+            >
+              <i class="bi bi-arrow-right-short fs-4"></i>
+            </button>
+            <h4 class="mb-0">ایجاد پکیج محصولات</h4>
+          </div>
+          <button class="action-btn">
+            <i class="bi bi-check-lg me-2"></i>
+            ذخیره پکیج
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <!-- Package Information -->
+          <div class="admin-card">
+            <h5 class="mb-4">اطلاعات پکیج</h5>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">نام پکیج *</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="مثال: ست ورزشی کامل"
+                />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">دسته‌بندی</label>
+                <select class="form-select">
+                  <option value="makeup">لوازم آرایش</option>
+                  <option value="lips">محصولات لب</option>
+                  <option value="face">محصولات صورت</option>
+                  <option value="accessories">لوازم جانبی</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label">توضیحات پکیج</label>
+                <textarea
+                  class="form-control"
+                  rows="4"
+                  placeholder="توضیحات کامل پکیج را وارد کنید..."
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Products in Package -->
+          <div class="admin-card">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h5 class="mb-0">محصولات پکیج</h5>
+              <button
+                class="action-btn"
+                data-bs-toggle="modal"
+                data-bs-target="#addProductModal"
+              >
+                <i class="bi bi-plus-lg me-2"></i>
+                افزودن محصول
+              </button>
+            </div>
+
+            <!-- Product List -->
+            <div class="package-items" id="packageItems">
+              <!-- Products will be added here dynamically -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <!-- Package Summary -->
+          <div class="admin-card">
+            <h5 class="mb-4">خلاصه پکیج</h5>
+            <div class="mb-4">
+              <div class="d-flex justify-content-between mb-2">
+                <span>تعداد محصولات:</span>
+                <strong data-total-items>۰ محصول</strong>
+              </div>
+              <div class="d-flex justify-content-between mb-2">
+                <span>قیمت کل محصولات:</span>
+                <strong data-total-price>۰ تومان</strong>
+              </div>
+              <hr />
+              <div class="mb-3">
+                <label class="form-label">تخفیف پکیج</label>
+                <div class="input-group">
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="0"
+                    data-discount
+                  />
+                  <span class="input-group-text bg-transparent text-light"
+                    >%</span
+                  >
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <span>قیمت نهایی پکیج:</span>
+                <strong class="text-success" data-final-price>۰ تومان</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- Package Settings -->
+          <div class="admin-card">
+            <h5 class="mb-4">تنظیمات پکیج</h5>
+            <div class="mb-3">
+              <div class="form-check form-switch">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="limitedStock"
+                />
+                <label class="form-check-label" for="limitedStock"
+                  >موجودی محدود</label
+                >
+              </div>
+              <small class="text-secondary"
+                >فعال کردن مدیریت موجودی برای پکیج</small
+              >
+            </div>
+            <div class="mb-3">
+              <label class="form-label">موجودی پکیج</label>
+              <input type="number" class="form-control" value="50" />
+            </div>
+            <div class="mb-3">
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="featured" />
+                <label class="form-check-label" for="featured">پکیج ویژه</label>
+              </div>
+              <small class="text-secondary">نمایش در بخش پکیج‌های ویژه</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div class="modal fade" id="addProductModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-secondary">
+          <div class="modal-header border-secondary">
+            <h5 class="modal-title">افزودن محصول به پکیج</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="product-search mb-4">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="جستجوی محصول..."
+                data-search
+              />
+              <div class="search-results" id="searchResults">
+                <!-- Search results will be populated here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Product data
+      const products = [
+        {
+          id: 1,
+          name: 'لیپ گلاس Gloss Bomb',
+          color: 'Riri',
+          price: 1250000,
+          category: 'lips',
+          image: '/api/placeholder/100/100',
+        },
+        {
+          id: 2,
+          name: 'رژلب مایع Fenty Icon Velvet',
+          color: 'Riri',
+          price: 1100000,
+          category: 'lips',
+          image: '/api/placeholder/100/100',
+        },
+        {
+          id: 3,
+          name: 'لیپ گلاس استیکی Gloss Bomb Stix',
+          color: 'Riri',
+          price: 1200000,
+          category: 'lips',
+          image: '/api/placeholder/100/100',
+        },
+        {
+          id: 4,
+          name: 'باکس',
+          price: 50000,
+          category: 'accessories',
+          image: '/api/placeholder/100/100',
+        },
+      ];
+
+      let packageItems = [];
+
+      // Add product to package
+      function addProduct(productId) {
+        const product = products.find((p) => p.id === productId);
+        if (product) {
+          packageItems.push({ ...product, quantity: 1 });
+          updatePackageDisplay();
+          updatePackageSummary();
+          $('#addProductModal').modal('hide');
+        }
+      }
+
+      // Remove product from package
+      function removeProduct(index) {
+        packageItems.splice(index, 1);
+        updatePackageDisplay();
+        updatePackageSummary();
+      }
+
+      // Update package items display
+      function updatePackageDisplay() {
+        const packageItemsContainer = document.getElementById('packageItems');
+        packageItemsContainer.innerHTML = packageItems
+          .map(
+            (item, index) => `
+          <div class="package-item">
+            <div class="row align-items-center">
+              <div class="col-md-2">
+                <img src="${item.image}" class="img-fluid rounded" alt="${
+              item.name
+            }" />
+              </div>
+              <div class="col-md-4">
+                <h6 class="mb-1">${item.name}</h6>
+                ${
+                  item.color
+                    ? `<small class="text-secondary">رنگ ${item.color}</small>`
+                    : ''
+                }
+              </div>
+              <div class="col-md-2">
+                <small class="text-secondary d-block">قیمت واحد</small>
+                <span>${item.price.toLocaleString()} تومان</span>
+              </div>
+              <div class="col-md-2">
+                <small class="text-secondary d-block">تعداد</small>
+                <input type="number" class="form-control form-control-sm" value="${
+                  item.quantity
+                }"
+                  onchange="updateQuantity(${index}, this.value)" />
+              </div>
+              <div class="col-md-2 text-end">
+                <button class="btn btn-sm btn-outline-danger" onclick="removeProduct(${index})">
+                  <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        `
+          )
+          .join('');
+      }
+
+      // Update quantity
+      function updateQuantity(index, value) {
+        packageItems[index].quantity = parseInt(value) || 1;
+        updatePackageSummary();
+      }
+
+      // Update package summary
+      function updatePackageSummary() {
+        const totalItems = packageItems.reduce(
+          (sum, item) => sum + item.quantity,
+          0
+        );
+        const totalPrice = packageItems.reduce(
+          (sum, item) => sum + item.price * item.quantity,
+          0
+        );
+
+        document.querySelector('[data-total-items]').textContent =
+          totalItems + ' محصول';
+        document.querySelector('[data-total-price]').textContent =
+          totalPrice.toLocaleString() + ' تومان';
+
+        // Calculate final price with discount
+        const discountInput = document.querySelector('[data-discount]');
+        const discount = parseInt(discountInput.value) || 0;
+        const finalPrice = totalPrice * (1 - discount / 100);
+        document.querySelector('[data-final-price]').textContent =
+          finalPrice.toLocaleString() + ' تومان';
+      }
+
+      // Search products
+      document.querySelector('[data-search]').addEventListener('input', (e) => {
+        const searchTerm = e.target.value.toLowerCase();
+        const searchResults = products.filter(
+          (p) =>
+            p.name.toLowerCase().includes(searchTerm) ||
+            (p.color && p.color.toLowerCase().includes(searchTerm))
+        );
+
+        document.getElementById('searchResults').innerHTML = searchResults
+          .map(
+            (product) => `
+          <div class="search-item d-flex align-items-center" onclick="addProduct(${
+            product.id
+          })">
+            <img src="${product.image}" class="rounded me-3" alt="${
+              product.name
+            }" />
+            <div>
+              <h6 class="mb-1">${product.name}</h6>
+              <small class="text-secondary">قیمت: ${product.price.toLocaleString()} تومان</small>
+            </div>
+          </div>
+        `
+          )
+          .join('');
+      });
+
+      // Initialize
+      updatePackageDisplay();
+      updatePackageSummary();
+    </script>
+  </body>
+</html>

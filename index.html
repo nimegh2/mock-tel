@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>نوژا | خرید جهانی</title>
+
+    <!-- Bootstrap RTL -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --tg-theme-bg-color: #e5ddd0;
+        --tg-theme-text-color: #2b3441;
+        --tg-theme-button-color: #2b3441;
+        --tg-theme-button-text-color: #e5ddd0;
+        --tg-theme-secondary-bg-color: #f2ede4;
+        --tg-theme-hint-color: #999999;
+        --tg-theme-link-color: #2b3441;
+        --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      body {
+        font-family: 'Vazirmatn', sans-serif;
+        background: var(--tg-theme-bg-color);
+        color: var(--tg-theme-text-color);
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      .tg-header {
+        background: var(--tg-theme-secondary-bg-color);
+        padding: 8px 16px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .tg-card {
+        background: var(--tg-theme-secondary-bg-color);
+        border-radius: 12px;
+        padding: 16px;
+        margin-bottom: 12px;
+        box-shadow: var(--card-shadow);
+      }
+
+      .tg-button {
+        background: var(--tg-theme-button-color);
+        color: var(--tg-theme-button-text-color);
+        border: none;
+        border-radius: 8px;
+        padding: 12px 20px;
+        width: 100%;
+        font-size: 16px;
+        margin-bottom: 8px;
+        transition: opacity 0.2s;
+      }
+
+      .tg-button:active {
+        opacity: 0.8;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: 'Lalezar', cursive;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="tg-header d-flex align-items-center justify-content-between">
+      <img src="images/noja-logo.png" alt="نوژا" height="32" />
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn" onclick="window.location.href='profile.html'">
+          <i class="bi bi-person fs-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container py-3">
+      <!-- Welcome Card -->
+      <div class="tg-card text-center mb-4">
+        <h2 class="mb-3">به نوژا خوش آمدید</h2>
+        <p class="mb-4">خرید آسان از فروشگاه‌های معتبر جهانی با پرداخت ریالی</p>
+        <button
+          class="tg-button mb-2"
+          onclick="window.location.href='shop.html'"
+        >
+          <i class="bi bi-shop me-2"></i>
+          فروشگاه
+        </button>
+        <button
+          class="tg-button"
+          onclick="window.location.href='submit-link.html'"
+        >
+          <i class="bi bi-link-45deg me-2"></i>
+          ارسال لینک محصول
+        </button>
+      </div>
+
+      <!-- Features -->
+      <div class="row g-3">
+        <div class="col-6">
+          <div class="tg-card text-center h-100">
+            <i class="bi bi-currency-dollar fs-3 mb-2"></i>
+            <h3 class="fs-5">پرداخت ریالی</h3>
+            <p class="mb-0 small">خرید با تومان</p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="tg-card text-center h-100">
+            <i class="bi bi-truck fs-3 mb-2"></i>
+            <h3 class="fs-5">ارسال سریع</h3>
+            <p class="mb-0 small">تحویل درب منزل</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

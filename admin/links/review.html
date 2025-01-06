@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>نوژا | بررسی درخواست لینک</title>
+
+    <!-- External CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-primary: #2b3441;
+        --bg-secondary: #1c232d;
+        --accent-primary: #e5ddd0;
+        --accent-secondary: #c4c4c4;
+        --text-primary: #e5ddd0;
+        --text-secondary: #c4c4c4;
+      }
+
+      body {
+        font-family: 'Vazirmatn', sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+      }
+
+      .header {
+        background: var(--bg-secondary);
+        padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .admin-card {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(229, 221, 208, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .action-btn {
+        background: transparent;
+        border: 1px solid var(--accent-primary);
+        color: var(--text-primary);
+        border-radius: 8px;
+        padding: 8px 16px;
+        transition: all 0.2s;
+      }
+
+      .action-btn:hover {
+        background: var(--accent-primary);
+        color: var(--bg-primary);
+      }
+
+      .form-control,
+      .form-select {
+        background-color: var(--bg-primary);
+        border: 1px solid rgba(229, 221, 208, 0.2);
+        color: var(--text-primary);
+      }
+
+      .form-control:focus,
+      .form-select:focus {
+        background-color: var(--bg-primary);
+        border-color: var(--accent-primary);
+        color: var(--text-primary);
+        box-shadow: none;
+      }
+
+      .preview-image {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="header mb-4">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center gap-3">
+            <button
+              class="btn text-light"
+              onclick="window.location.href='requests.html'"
+            >
+              <i class="bi bi-arrow-right-short fs-4"></i>
+            </button>
+            <h4 class="mb-0">بررسی درخواست #REQ-1234</h4>
+          </div>
+          <div>
+            <button class="action-btn me-2" style="background: var(--success)">
+              <i class="bi bi-check-lg me-2"></i>
+              تایید و ایجاد محصول
+            </button>
+            <button class="action-btn" style="background: var(--danger)">
+              <i class="bi bi-x-lg me-2"></i>
+              رد درخواست
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <!-- Request Details -->
+          <div class="admin-card">
+            <div class="mb-4">
+              <small class="text-secondary d-block">لینک درخواستی</small>
+              <div class="d-flex align-items-center gap-2">
+                <img
+                  src="/api/placeholder/24/24"
+                  alt="Amazon"
+                  class="rounded"
+                />
+                <a href="#" class="text-light">amazon.com/dp/B08JHKN63M</a>
+              </div>
+            </div>
+
+            <div class="row mb-4">
+              <div class="col-md-6">
+                <small class="text-secondary d-block">درخواست کننده</small>
+                <span>علی محمدی</span>
+              </div>
+              <div class="col-md-6">
+                <small class="text-secondary d-block">تاریخ درخواست</small>
+                <span>۱۵ دی ۱۴۰۲ - ۱۴:۳۰</span>
+              </div>
+            </div>
+
+            <div class="mb-4">
+              <small class="text-secondary d-block">توضیحات کاربر</small>
+              <p>سایز ۴۲ - رنگ مشکی لطفا موجود بودن و قیمت رو بررسی کنید</p>
+            </div>
+          </div>
+
+          <!-- Product Information -->
+          <div class="admin-card">
+            <h5 class="mb-4">اطلاعات محصول</h5>
+            <img
+              src="/api/placeholder/600/300"
+              class="preview-image"
+              alt="Product Preview"
+            />
+
+            <form>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">نام محصول</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    value="Nike Air Max 270"
+                  />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">دسته‌بندی</label>
+                  <select class="form-select">
+                    <option>کفش ورزشی</option>
+                    <option>لباس</option>
+                    <option>لوازم جانبی</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">قیمت (دلار)</label>
+                  <input type="text" class="form-control" value="129.99" />
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">قیمت (تومان)</label>
+                  <input type="text" class="form-control" value="۵,۸۵۰,۰۰۰" />
+                </div>
+                <div class="col-12">
+                  <label class="form-label">توضیحات</label>
+                  <textarea class="form-control" rows="4"></textarea>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <!-- Status Update -->
+          <div class="admin-card">
+            <h5 class="mb-3">وضعیت درخواست</h5>
+            <select class="form-select mb-3">
+              <option>در حال بررسی</option>
+              <option>تایید شده-در انتظار پرداخت</option>
+              <option>نیاز به اطلاعات بیشتر</option>
+              <option>رد شده</option>
+            </select>
+            <div class="form-floating mb-3">
+              <textarea
+                class="form-control"
+                style="height: 100px"
+                placeholder="پیام به کاربر"
+              ></textarea>
+              <label class="text-secondary">پیام به کاربر</label>
+            </div>
+            <button class="action-btn w-100">بروزرسانی وضعیت</button>
+          </div>
+
+          <!-- Product Variations -->
+          <div class="admin-card">
+            <h5 class="mb-3">تنوع محصول</h5>
+            <div class="mb-3">
+              <label class="form-label">سایز</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="مثال: 42, 43, 44"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">رنگ‌ها</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="مثال: مشکی, سفید"
+              />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">موجودی</label>
+              <input type="number" class="form-control" value="10" />
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div class="admin-card">
+            <h5 class="mb-3">یادداشت‌های داخلی</h5>
+            <div class="mb-3">
+              <textarea
+                class="form-control"
+                rows="3"
+                placeholder="یادداشت خود را وارد کنید..."
+              ></textarea>
+            </div>
+            <button class="action-btn w-100">
+              <i class="bi bi-plus-lg me-2"></i>
+              افزودن یادداشت
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

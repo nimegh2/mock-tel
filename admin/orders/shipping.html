@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>نوژا | مدیریت ارسال</title>
+
+    <!-- External CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-primary: #2b3441;
+        --bg-secondary: #1c232d;
+        --accent-primary: #e5ddd0;
+        --accent-secondary: #c4c4c4;
+        --text-primary: #e5ddd0;
+        --text-secondary: #c4c4c4;
+        --success: #4caf50;
+        --warning: #ffc107;
+        --danger: #ff4e83;
+      }
+
+      body {
+        font-family: 'Vazirmatn', sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+      }
+
+      .header {
+        background: var(--bg-secondary);
+        padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .admin-card {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(229, 221, 208, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .shipping-status {
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        background: rgba(229, 221, 208, 0.1);
+      }
+
+      .shipping-item {
+        border-bottom: 1px solid rgba(229, 221, 208, 0.1);
+        padding: 1rem 0;
+      }
+
+      .shipping-item:last-child {
+        border-bottom: none;
+      }
+
+      .action-btn {
+        background: transparent;
+        border: 1px solid var(--accent-primary);
+        color: var(--text-primary);
+        border-radius: 8px;
+        padding: 8px 16px;
+        transition: all 0.2s;
+      }
+
+      .action-btn:hover {
+        background: var(--accent-primary);
+        color: var(--bg-primary);
+      }
+
+      .tab-btn {
+        background: transparent;
+        border: none;
+        color: var(--text-secondary);
+        padding: 1rem;
+        position: relative;
+      }
+
+      .tab-btn.active {
+        color: var(--text-primary);
+      }
+
+      .tab-btn.active::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--accent-primary);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="header mb-4">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center gap-3">
+            <button
+              class="btn text-light"
+              onclick="window.location.href='orders.html'"
+            >
+              <i class="bi bi-arrow-right-short fs-4"></i>
+            </button>
+            <h4 class="mb-0">مدیریت ارسال</h4>
+          </div>
+          <button class="action-btn">
+            <i class="bi bi-plus-lg me-2"></i>
+            ثبت بسته جدید
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <!-- Status Overview -->
+      <div class="row g-3 mb-4">
+        <div class="col-md-3">
+          <div class="admin-card">
+            <h6 class="text-secondary mb-2">در انتظار ارسال</h6>
+            <h3>۲۴</h3>
+            <div class="progress" style="height: 4px">
+              <div class="progress-bar bg-warning" style="width: 40%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="admin-card">
+            <h6 class="text-secondary mb-2">در حال ارسال</h6>
+            <h3>۱۲</h3>
+            <div class="progress" style="height: 4px">
+              <div class="progress-bar bg-info" style="width: 60%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="admin-card">
+            <h6 class="text-secondary mb-2">تحویل شده</h6>
+            <h3>۱۸۵</h3>
+            <div class="progress" style="height: 4px">
+              <div class="progress-bar bg-success" style="width: 80%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="admin-card">
+            <h6 class="text-secondary mb-2">مشکل در ارسال</h6>
+            <h3>۳</h3>
+            <div class="progress" style="height: 4px">
+              <div class="progress-bar bg-danger" style="width: 20%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Navigation -->
+      <div class="admin-card">
+        <div class="d-flex border-bottom border-secondary mb-4">
+          <button class="tab-btn active">در انتظار ارسال</button>
+          <button class="tab-btn">در حال ارسال</button>
+          <button class="tab-btn">تحویل شده</button>
+          <button class="tab-btn">مشکل در ارسال</button>
+        </div>
+
+        <!-- Shipping List -->
+        <div class="shipping-list">
+          <!-- Shipping Item 1 -->
+          <div class="shipping-item">
+            <div class="row align-items-center">
+              <div class="col-md-3">
+                <h6 class="mb-1">#NOJ-1234</h6>
+                <small class="text-secondary">علی محمدی</small>
+              </div>
+              <div class="col-md-4">
+                <p class="mb-1">تهران، خیابان ولیعصر</p>
+                <small class="text-secondary">۳ محصول - ۵.۲ کیلوگرم</small>
+              </div>
+              <div class="col-md-3">
+                <span class="badge bg-warning">در انتظار بسته‌بندی</span>
+              </div>
+              <div class="col-md-2 text-end">
+                <button class="btn btn-sm btn-outline-light">جزئیات</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shipping Item 2 -->
+          <div class="shipping-item">
+            <div class="row align-items-center">
+              <div class="col-md-3">
+                <h6 class="mb-1">#NOJ-1235</h6>
+                <small class="text-secondary">مریم احمدی</small>
+              </div>
+              <div class="col-md-4">
+                <p class="mb-1">اصفهان، خیابان چهارباغ</p>
+                <small class="text-secondary">۱ محصول - ۱.۸ کیلوگرم</small>
+              </div>
+              <div class="col-md-3">
+                <span class="badge bg-info">آماده ارسال</span>
+              </div>
+              <div class="col-md-2 text-end">
+                <button class="btn btn-sm btn-outline-light">جزئیات</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pagination -->
+        <nav class="mt-4">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a
+                class="page-link bg-transparent border-light text-light"
+                href="#"
+                >قبلی</a
+              >
+            </li>
+            <li class="page-item active">
+              <a class="page-link bg-light border-light text-dark" href="#"
+                >۱</a
+              >
+            </li>
+            <li class="page-item">
+              <a
+                class="page-link bg-transparent border-light text-light"
+                href="#"
+                >۲</a
+              >
+            </li>
+            <li class="page-item">
+              <a
+                class="page-link bg-transparent border-light text-light"
+                href="#"
+                >۳</a
+              >
+            </li>
+            <li class="page-item">
+              <a
+                class="page-link bg-transparent border-light text-light"
+                href="#"
+                >بعدی</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

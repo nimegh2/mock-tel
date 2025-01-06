@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>نوژا | مدیریت محصولات و پکیج‌ها</title>
+
+    <!-- External CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-primary: #2b3441;
+        --bg-secondary: #1c232d;
+        --accent-primary: #e5ddd0;
+        --accent-secondary: #c4c4c4;
+        --text-primary: #e5ddd0;
+        --text-secondary: #c4c4c4;
+      }
+
+      body {
+        font-family: 'Vazirmatn', sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+      }
+
+      .header {
+        background: var(--bg-secondary);
+        padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .admin-card {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(229, 221, 208, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .item-card {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(229, 221, 208, 0.2);
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.2s;
+        height: 100%;
+      }
+
+      .item-card:hover {
+        transform: translateY(-2px);
+      }
+
+      .action-btn {
+        background: transparent;
+        border: 1px solid var(--accent-primary);
+        color: var(--text-primary);
+        border-radius: 8px;
+        padding: 8px 16px;
+        transition: all 0.2s;
+      }
+
+      .action-btn:hover {
+        background: var(--accent-primary);
+        color: var(--bg-primary);
+      }
+
+      .tag {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.6);
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        z-index: 1;
+      }
+
+      .nav-pills .nav-link {
+        color: var(--text-primary);
+        border: 1px solid transparent;
+        border-radius: 8px;
+        padding: 8px 16px;
+      }
+
+      .nav-pills .nav-link.active {
+        background-color: var(--accent-primary);
+        color: var(--bg-primary);
+        border-color: var(--accent-primary);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="header mb-4">
+      <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center gap-3">
+            <button
+              class="btn text-light"
+              onclick="window.location.href='../index.html'"
+            >
+              <i class="bi bi-arrow-right-short fs-4"></i>
+            </button>
+            <h4 class="mb-0">مدیریت محصولات و پکیج‌ها</h4>
+          </div>
+          <div class="dropdown">
+            <button
+              class="action-btn dropdown-toggle"
+              data-bs-toggle="dropdown"
+            >
+              <i class="bi bi-plus-lg me-2"></i>
+              افزودن جدید
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end bg-secondary">
+              <li>
+                <a class="dropdown-item text-light" href="add.html">
+                  <i class="bi bi-box me-2"></i>افزودن محصول تکی
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item text-light" href="create-package.html">
+                  <i class="bi bi-boxes me-2"></i>ایجاد پکیج جدید
+                </a>
+              </li>
+              <li><hr class="dropdown-divider border-secondary" /></li>
+              <li>
+                <a class="dropdown-item text-light" href="import.html">
+                  <i class="bi bi-file-earmark-excel me-2"></i>آپلود فایل اکسل
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container-fluid">
+      <!-- Stats Row -->
+      <div class="row g-3 mb-4">
+        <div class="col-md-3">
+          <div class="admin-card text-center">
+            <i class="bi bi-box-seam fs-3 mb-2"></i>
+            <h3>۳۵۶</h3>
+            <p class="mb-0 text-secondary">محصولات تکی</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="admin-card text-center">
+            <i class="bi bi-boxes fs-3 mb-2"></i>
+            <h3>۴۸</h3>
+            <p class="mb-0 text-secondary">پکیج‌ها</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="admin-card text-center">
+            <i class="bi bi-exclamation-triangle fs-3 mb-2"></i>
+            <h3>۱۵</h3>
+            <p class="mb-0 text-secondary">کم‌موجود</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="admin-card text-center">
+            <i class="bi bi-x-circle fs-3 mb-2"></i>
+            <h3>۲۳</h3>
+            <p class="mb-0 text-secondary">ناموجود</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filters and Search -->
+      <div class="admin-card mb-4">
+        <ul class="nav nav-pills mb-3">
+          <li class="nav-item">
+            <button class="nav-link active" onclick="filterItems('all')">
+              همه موارد
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" onclick="filterItems('single')">
+              محصولات تکی
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" onclick="filterItems('package')">
+              پکیج‌ها
+            </button>
+          </li>
+        </ul>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <input
+              type="text"
+              class="form-control bg-transparent text-light"
+              placeholder="جستجو..."
+            />
+          </div>
+          <div class="col-md-3">
+            <select class="form-select bg-transparent text-light">
+              <option>همه دسته‌بندی‌ها</option>
+              <option>کفش</option>
+              <option>پوشاک</option>
+              <option>ست ورزشی</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <select class="form-select bg-transparent text-light">
+              <option>مرتب‌سازی</option>
+              <option>جدیدترین</option>
+              <option>گران‌ترین</option>
+              <option>ارزان‌ترین</option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <button class="action-btn w-100">اعمال فیلتر</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="row g-4">
+        <!-- Single Product -->
+        <div class="col-md-3">
+          <div class="item-card">
+            <div class="position-relative">
+              <span class="tag">محصول تکی</span>
+              <img
+                src="/api/placeholder/400/300"
+                class="img-fluid w-100"
+                alt="Product"
+              />
+            </div>
+            <div class="p-3">
+              <h6>Nike Air Max 270</h6>
+              <p class="text-secondary small mb-2">کفش ورزشی نایک</p>
+              <div
+                class="d-flex justify-content-between align-items-center mb-3"
+              >
+                <span class="text-success">۳,۵۰۰,۰۰۰ تومان</span>
+                <span class="badge bg-success">موجود</span>
+              </div>
+              <div class="d-grid gap-2">
+                <a href="add.html" class="action-btn text-center">
+                  <i class="bi bi-pencil me-2"></i>
+                  ویرایش
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Package -->
+        <div class="col-md-3">
+          <div class="item-card">
+            <div class="position-relative">
+              <span class="tag bg-info">پکیج</span>
+              <div
+                class="position-absolute bottom-0 start-0 end-0 p-2 text-center bg-dark bg-opacity-75"
+              >
+                <small>شامل ۳ محصول</small>
+              </div>
+              <img
+                src="/api/placeholder/400/300"
+                class="img-fluid w-100"
+                alt="Package"
+              />
+            </div>
+            <div class="p-3">
+              <h6>ست ورزشی کامل نایک</h6>
+              <p class="text-secondary small mb-2">کفش، تیشرت و شلوار ورزشی</p>
+              <div
+                class="d-flex justify-content-between align-items-center mb-2"
+              >
+                <span class="text-success">۸,۵۰۰,۰۰۰ تومان</span>
+                <span class="badge bg-danger">ناموجود</span>
+              </div>
+              <div class="progress mb-3" style="height: 4px">
+                <div class="progress-bar bg-info" style="width: 75%"></div>
+              </div>
+              <div class="d-grid gap-2">
+                <a href="create-package.html" class="action-btn text-center">
+                  <i class="bi bi-pencil me-2"></i>
+                  ویرایش پکیج
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <nav class="mt-4">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link bg-transparent border-light text-light" href="#"
+              >قبلی</a
+            >
+          </li>
+          <li class="page-item active">
+            <a class="page-link bg-light border-light text-dark" href="#">۱</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link bg-transparent border-light text-light" href="#"
+              >۲</a
+            >
+          </li>
+          <li class="page-item">
+            <a class="page-link bg-transparent border-light text-light" href="#"
+              >۳</a
+            >
+          </li>
+          <li class="page-item">
+            <a class="page-link bg-transparent border-light text-light" href="#"
+              >بعدی</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      function filterItems(type) {
+        // Add filtering logic here
+        console.log('Filtering by:', type);
+      }
+    </script>
+  </body>
+</html>

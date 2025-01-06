@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>نوژا | جزئیات سفارش</title>
+
+    <!-- External CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-primary: #2b3441;
+        --bg-secondary: #1c232d;
+        --accent-primary: #e5ddd0;
+        --accent-secondary: #c4c4c4;
+        --text-primary: #e5ddd0;
+        --text-secondary: #c4c4c4;
+        --success: #4caf50;
+        --warning: #ffc107;
+        --danger: #ff4e83;
+      }
+
+      body {
+        font-family: 'Vazirmatn', sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        min-height: 100vh;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: 'Lalezar', cursive;
+      }
+
+      .header {
+        background: var(--bg-secondary);
+        padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .admin-card {
+        background: var(--bg-secondary);
+        border: 1px solid rgba(229, 221, 208, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .action-btn {
+        background: transparent;
+        border: 1px solid var(--accent-primary);
+        color: var(--text-primary);
+        border-radius: 8px;
+        padding: 8px 16px;
+        transition: all 0.2s;
+      }
+
+      .action-btn:hover {
+        background: var(--accent-primary);
+        color: var(--bg-primary);
+      }
+
+      .timeline-item {
+        position: relative;
+        padding-right: 30px;
+        margin-bottom: 20px;
+      }
+
+      .timeline-item::before {
+        content: '';
+        position: absolute;
+        right: 10px;
+        top: 0;
+        bottom: -20px;
+        width: 2px;
+        background-color: var(--accent-secondary);
+      }
+
+      .timeline-item::after {
+        content: '';
+        position: absolute;
+        right: 6px;
+        top: 8px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: var(--accent-primary);
+      }
+
+      .timeline-item:last-child::before {
+        display: none;
+      }
+
+      /* Add these new styles */
+      select.custom-select {
+        background-color: var(--bg-secondary) !important;
+        color: var(--text-primary) !important;
+        border: 1px solid var(--accent-primary) !important;
+      }
+
+      select.custom-select option {
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+      }
+
+      select.custom-select:focus {
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 0 0.25rem rgba(229, 221, 208, 0.25);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <div class="header mb-4">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex align-items-center gap-3">
+            <button
+              class="btn text-light"
+              onclick="window.location.href='orders.html'"
+            >
+              <i class="bi bi-arrow-right-short fs-4"></i>
+            </button>
+            <h4 class="mb-0">جزئیات سفارش #NOJ-1234</h4>
+          </div>
+          <div>
+            <button class="action-btn me-2">
+              <i class="bi bi-printer me-2"></i>
+              چاپ فاکتور
+            </button>
+            <button class="action-btn" style="background: var(--danger)">
+              <i class="bi bi-x-circle me-2"></i>
+              لغو سفارش
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+      <div class="row">
+        <!-- Order Details -->
+        <div class="col-md-8">
+          <div class="admin-card">
+            <div class="d-flex justify-content-between mb-4">
+              <div>
+                <h5>مشخصات سفارش</h5>
+                <p class="text-secondary mb-0">ثبت شده در تاریخ ۱۵ دی ۱۴۰۲</p>
+              </div>
+              <span class="badge bg-warning fs-6">در حال بررسی</span>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table table-dark table-borderless">
+                <tr>
+                  <td>شماره سفارش:</td>
+                  <td>#NOJ-1234</td>
+                </tr>
+                <tr>
+                  <td>نام مشتری:</td>
+                  <td>علی محمدی</td>
+                </tr>
+                <tr>
+                  <td>شماره تماس:</td>
+                  <td>۰۹۱۲۳۴۵۶۷۸۹</td>
+                </tr>
+                <tr>
+                  <td>آدرس:</td>
+                  <td>تهران، خیابان ولیعصر، کوچه مهر، پلاک ۱۲</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+
+          <!-- Products -->
+          <div class="admin-card">
+            <h5 class="mb-4">محصولات</h5>
+            <div class="table-responsive">
+              <table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th>محصول</th>
+                    <th>تعداد</th>
+                    <th>قیمت واحد</th>
+                    <th>جمع</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="/api/placeholder/50/50"
+                          class="rounded me-2"
+                          alt="Product"
+                        />
+                        Nike Air Max
+                      </div>
+                    </td>
+                    <td>1</td>
+                    <td>۳,۵۰۰,۰۰۰ تومان</td>
+                    <td>۳,۵۰۰,۰۰۰ تومان</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="3" class="text-start">جمع کل:</td>
+                    <td>۳,۵۰۰,۰۰۰ تومان</td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" class="text-start">هزینه ارسال:</td>
+                    <td>۲۵۰,۰۰۰ تومان</td>
+                  </tr>
+                  <tr>
+                    <td colspan="3" class="text-start">
+                      <strong>مبلغ نهایی:</strong>
+                    </td>
+                    <td><strong>۳,۷۵۰,۰۰۰ تومان</strong></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Timeline and Actions -->
+        <div class="col-md-4">
+          <!-- Status Update -->
+          <div class="admin-card">
+            <h5 class="mb-3">بروزرسانی وضعیت</h5>
+            <select class="form-select custom-select">
+              <option>در حال بررسی</option>
+              <option>دریافت در مبدا</option>
+              <option>ارسال به آدرس مشتری</option>
+              <option>تحویل شده</option>
+              <option>لغو شده</option>
+            </select>
+            <button class="action-btn w-100">بروزرسانی وضعیت</button>
+          </div>
+
+          <!-- Timeline -->
+          <div class="admin-card">
+            <h5 class="mb-4">تاریخچه سفارش</h5>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="mb-2">
+                  <strong>ثبت سفارش</strong>
+                </div>
+                <p class="text-secondary mb-1">سفارش با موفقیت ثبت شد</p>
+                <small class="text-secondary">۱۵ دی ۱۴۰۲ - ۱۴:۳۰</small>
+              </div>
+              <div class="timeline-item">
+                <div class="mb-2">
+                  <strong>پرداخت موفق</strong>
+                </div>
+                <p class="text-secondary mb-1">پرداخت با موفقیت انجام شد</p>
+                <small class="text-secondary">۱۵ دی ۱۴۰۲ - ۱۴:۳۲</small>
+              </div>
+              <div class="timeline-item">
+                <div class="mb-2">
+                  <strong>در حال بررسی</strong>
+                </div>
+                <p class="text-secondary mb-1">
+                  سفارش در حال بررسی توسط تیم نوژا
+                </p>
+                <small class="text-secondary">۱۵ دی ۱۴۰۲ - ۱۵:۰۰</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div class="admin-card">
+            <h5 class="mb-3">یادداشت‌های داخلی</h5>
+            <textarea
+              class="form-control bg-transparent text-light mb-3"
+              rows="3"
+              placeholder="یادداشت خود را وارد کنید..."
+            ></textarea>
+            <button class="action-btn w-100">
+              <i class="bi bi-plus-lg me-2"></i>
+              افزودن یادداشت
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
