@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>نوژا | پکیج لب Sephora</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-primary: #2b3441;
+      --bg-secondary: #1c232d;
+      --accent-primary: #e5ddd0;
+      --accent-secondary: #c4c4c4;
+      --text-primary: #e5ddd0;
+      --text-secondary: #c4c4c4;
+      --success: #4caf50;
+      --warning: #ffc107;
+      --danger: #ff4e83;
+    }
+
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+    }
+
+    .header {
+      background: var(--bg-secondary);
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-card {
+      background: var(--bg-secondary);
+      border: 1px solid rgba(229, 221, 208, 0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .package-item {
+      background: var(--bg-primary);
+      border: 1px solid rgba(229, 221, 208, 0.1);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      transition: transform 0.2s;
+    }
+
+    .package-item:hover {
+      transform: translateY(-2px);
+    }
+
+    .package-item-image {
+      width: 80px;
+      height: 80px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .action-btn {
+      background: var(--accent-primary);
+      color: var(--bg-primary);
+      border: none;
+      border-radius: 8px;
+      padding: 1rem;
+      font-weight: 500;
+      width: 100%;
+      transition: opacity 0.2s;
+    }
+
+    .action-btn.outline {
+      background: transparent;
+      border: 1px solid var(--accent-primary);
+      color: var(--accent-primary);
+    }
+
+    .timer-box {
+      background: rgba(255, 78, 131, 0.1);
+      border: 1px solid var(--danger);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { border-color: var(--danger); }
+      50% { border-color: transparent; }
+      100% { border-color: var(--danger); }
+    }
+
+    .timer-value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--danger);
+      font-family: 'Vazirmatn', sans-serif;
+    }
+
+    .buyer-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      margin-left: -8px;
+      border: 2px solid var(--bg-secondary);
+    }
+
+    .progress-thin {
+      height: 4px;
+      background: rgba(229, 221, 208, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-bar-danger {
+      background: var(--danger);
+      height: 100%;
+      border-radius: 2px;
+    }
+
+    .cart-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--bg-secondary);
+      border: 1px solid rgba(229, 221, 208, 0.2);
+      border-radius: 12px;
+      padding: 1rem;
+      min-width: 320px;
+      margin-top: 0.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      display: none;
+      z-index: 1050;
+    }
+
+    .cart-dropdown.show {
+      display: block;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem;
+      border-bottom: 1px solid rgba(229, 221, 208, 0.1);
+      gap: 1rem;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item-image {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header mb-4">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex align-items-center gap-3">
+          <button class="btn text-light" onclick="window.location.href='index.html'">
+            <i class="bi bi-arrow-right fs-4"></i>
+          </button>
+          <h4 class="mb-0">جزئیات پکیج</h4>
+        </div>
+        <div class="position-relative">
+          <button class="btn text-light position-relative" id="cartBtn">
+            <i class="bi bi-cart3 fs-5"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger cart-count">0</span>
+          </button>
+          <div class="cart-dropdown" id="cartDropdown">
+            <div id="cartItems"></div>
+            <div class="cart-total">
+              <strong>جمع کل:</strong>
+              <span class="cart-total-amount">۰ تومان</span>
+            </div>
+            <button class="action-btn w-100 mt-3">تکمیل خرید</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Package Info -->
+    <div class="product-card">
+      <div class="row">
+        <div class="col-md-6">
+          <img src="/api/placeholder/600/400" alt="Package" class="img-fluid rounded mb-3">
+        </div>
+        <div class="col-md-6">
+          <div class="d-flex justify-content-between align-items-start mb-3">
+            <div>
+              <h4 class="mb-2">پکیج لب Sephora</h4>
+              <p class="text-secondary mb-0">مجموعه کامل محصولات مراقبت و آرایش لب</p>
+            </div>
+            <span class="badge bg-danger">ویژه</span>
+          </div>
+
+          <!-- Timer -->
+          <div class="timer-box mb-4">
+            <div class="timer-value" id="packageTimer">۰۲:۱۸:۴۵</div>
+            <small class="text-danger">تا پایان تخفیف ویژه</small>
+          </div>
+
+          <!-- Stock Status -->
+          <div class="mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="text-secondary">موجودی باقیمانده:</span>
+              <span class="text-danger">۵ عدد</span>
+            </div>
+            <div class="progress-thin">
+              <div class="progress-bar-danger" style="width: 20%"></div>
+            </div>
+          </div>
+
+          <!-- Pricing -->
+          <div class="mb-4">
+            <div class="d-flex align-items-baseline gap-2">
+              <span class="fs-3">۴,۳۸۰,۰۰۰ تومان</span>
+              <del class="text-secondary">۵,۱۵۰,۰۰۰</del>
+              <span class="badge bg-danger">۱۵٪</span>
+            </div>
+            <small class="text-secondary">+ ۹٪ مالیات</small>
+          </div>
+
+          <!-- Recent Buyers -->
+          <div class="mb-4">
+            <label class="text-secondary mb-2 d-block">خریداران اخیر:</label>
+            <div class="d-flex align-items-center">
+              <div class="d-flex">
+                <img src="/api/placeholder/32/32" alt="Buyer" class="buyer-avatar">
+                <img src="/api/placeholder/32/32" alt="Buyer" class="buyer-avatar">
+                <img src="/api/placeholder/32/32" alt="Buyer" class="buyer-avatar">
+              </div>
+              <span class="ms-2 text-secondary">@Sarayeganegi، @yasna_ranjbar و ۱۰ نفر دیگر</span>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="d-grid gap-2">
+            <button class="action-btn" onclick="addToCart()">
+              افزودن به سبد خرید
+            </button>
+            <button class="action-btn outline">
+              <i class="bi bi-heart me-2"></i>
+              افزودن به علاقه‌مندی‌ها
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Package Contents -->
+    <div class="product-card">
+      <h5 class="mb-4">محتویات پکیج</h5>
+      <!-- Item 1 -->
+      <div class="package-item">
+        <div class="row align-items-center">
+          <div class="col-auto">
+            <img src="/api/placeholder/80/80" alt="Product" class="package-item-image">
+          </div>
+          <div class="col">
+            <h6 class="mb-1">Rare Beauty Kind Words Lip Liner in Wise</h6>
+            <p class="text-secondary mb-1">خط لب کرمی با ماندگاری بالا</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="text-secondary">۷۸۰,۰۰۰ تومان</span>
+              <a href="#" class="text-accent-primary small">مشاهده جزئیات</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="package-item">
+        <div class="row align-items-center">
+          <div class="col-auto">
+            <img src="/api/placeholder/80/80" alt="Product" class="package-item-image">
+          </div>
+          <div class="col">
+            <h6 class="mb-1">Tower 28 Beauty LipSoftie™</h6>
+            <p class="text-secondary mb-1">بالم لب مرطوب کننده</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="text-secondary">۹۵۰,۰۰۰ تومان</span>
+              <a href="#" class="text-accent-primary small">مشاهده جزئیات</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Package Timer
+    function updateTimer() {
+      const now = new Date();
+      const deadline = new Date();
+      deadline.setHours(23, 59, 59);
+
+      const diff = deadline - now;
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('packageTimer').textContent = 
+        `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    // Cart Management
+    let cart = {
+      items: {},
+      total: 0
+    };
+
+    function addToCart() {
+      const packageId = 'lip-package';
+      const item = {
+        name: 'پکیج لب Sephora',
+        price: 4380000,
+        image: '/api/placeholder/600/400',
+        quantity: 1
+      };
+
+      if (cart.items[packageId]) {
+        cart.items[packageId].quantity++;
+      } else {
+        cart.items[packageId] = item;
+      }
+
+      updateCart();
+      showNotification('پکیج به سبد خرید اضافه شد');
+    }
+
+    function updateCart() {
+      cart.total = Object.values(cart.items).reduce((sum, item) => sum + item.price * item.quantity, 0);
+      
+      const cartItems = document.getElementById('cartItems');
+      cartItems.innerHTML = '';
+      
+      Object.entries(cart.items).forEach(([id, item]) => {
+        cartItems.innerHTML += `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+            <div>
+              <div class="mb-1">${item.name}</div>
+              <div class="text-secondary small">${formatPrice(item.price)} × ${item.quantity}</div>
+            </div>
+          </div>
+        `;
+      });
+
+      document.querySelector('.cart-count').textContent = 
+        Object.values(cart.items).reduce((sum, item) => sum + item.quantity, 0);
+      document.querySelector('.cart-total-amount').textContent = 
+        formatPrice(cart.total) + ' تومان';
+
+      localStorage.setItem('noja_cart', JSON.stringify(cart));
+    }
+
+    function formatPrice(price) {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    function showNotification(message) {
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--bg-secondary);
+        color: var(--text-primary);
+        padding: 1rem;
+        border-radius: 8px;
+        z-index: 1000;
+      `;
+      notification.innerHTML = message;
+      
+      document.body.appendChild(notification);
+      setTimeout(() => notification.remove(), 3000);
+    }
+
+    // Cart Dropdown
+    document.getElementById('cartBtn').addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.getElementById('cartDropdown').classList.toggle('show');
+    });
+
+    document.addEventListener('click', function(e) {
+      const dropdown = document.getElementById('cartDropdown');
+      const cartBtn = document.getElementById('cartBtn');
+      
+      if (!dropdown.contains(e.target) && !cartBtn.contains(e.target)) {
+        dropdown.classList.remove('show');
+      }
+    });
+
+    // Initialize cart from localStorage
+    document.addEventListener('DOMContentLoaded', function() {
+      const savedCart = localStorage.getItem('noja_cart');
+      if (savedCart) {
+        cart = JSON.parse(savedCart);
+        updateCart();
+      }
+    });
+  </script>
+</body>
+</html>>
+              <a href="#" class="text-accent-primary small">مشاهده جزئیات</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="package-item">
+        <div class="row align-items-center">
+          <div class="col-auto">
+            <img src="/api/placeholder/80/80" alt="Product" class="package-item-image">
+          </div>
+          <div class="col">
+            <h6 class="mb-1">Charlotte Tilbury K.I.S.S.I.N.G</h6>
+            <p class="text-secondary mb-1">رژ لب ساتین</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="text-secondary">۱,۲۵۰,۰۰۰ تومان</span>
+              <a href="#" class="text-accent-primary small">مشاهده جزئیات</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="package-item">
+        <div class="row align-items-center">
+          <div class="col-auto">
+            <img src="/api/placeholder/80/80" alt="Product" class="package-item-image">
+          </div>
+          <div class="col">
+            <h6 class="mb-1">Yves Saint Laurent Loveshine Lip Oil Stick</h6>
+            <p class="text-secondary mb-1">روغن لب مغذی</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="text-secondary">۱,۱۰۰,۰۰۰ تومان</span>
+              <a href="#" class="text-accent-primary small">مشاهده جزئیات</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="package-item">
+        <div class="row align-items-center">
+          <div class="col-auto">
+            <img src="/api/placeholder/80/80" alt="Product" class="package-item-image">
+          </div>
+          <div class="col">
+            <h6 class="mb-1">MAKEUP BY MARIO MoistureGlow™</h6>
+            <p class="text-secondary mb-1">سرم مرطوب کننده لب</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <span class="text-secondary">۹۵۰,۰۰۰ تومان</span
